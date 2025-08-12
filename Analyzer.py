@@ -1,6 +1,5 @@
 import json
 import pandas as pd
-import numpy as np
 
 json_file_path = 'Database.json'
 
@@ -8,75 +7,24 @@ json_file_path = 'Database.json'
 # With Pandas
 with open(json_file_path, 'r') as f:
     data = json.load(f)
-#df = pd.json_normalize(data)
+df = pd.json_normalize(data['movies'])
 #print(df.head())
 
-df = pd.read_json(json_file_path)
-print(df.head())
-#rating = df.groupby('rating')
-#rating.mean()
+df['year'] = df['year'].astype(int)
+after08 = df[df['year'] > 2008]
+before08 = df[df['year'] <= 2008]
 
+rating1 = after08['rating'].mean()
+rating2 = before08['rating'].mean()
 
+print(f"Average rating after 2008: {rating1}")
+print(f"Average rating before 2008: {rating2}")
 
 
 '''
-movieList = {
-    "movies": [
-        {
-            "title":"The Godfather",
-            "rating":9.2,
-            "year":"1972"
-        },
-        {
-            "title":"the Matrix",
-            "rating":8.7,
-            "year":"1999"        
-        },
-        {
-            "title":"Interstellar",
-            "rating":8.7,
-            "year":"2014"        
-        },
-        {
-            "title":"The Dark Knight",
-            "rating":9.1,
-            "year":"2008"        
-        },
-        {
-            "title":"Transformers",
-            "rating":7.1,
-            "year":"2007"        
-        },
-        {
-            "title":"Kung Fu Panda",
-            "rating":7.8,
-            "year":"2008"        
-        },
-        {
-            "title":"Sin City",
-            "rating":8.0,
-            "year":"2005"        
-        },
-        {
-            "title":"CoCo",
-            "rating":8.4,
-            "year":"2017"        
-        },
-        {
-            "title":"Dragonball Evolution",
-            "rating":2.5,
-            "year":"2009"        
-        },
-        {
-            "title":"Green Lantern",
-            "rating":5.5,
-            "year":"2011"        
-        }
-    ]
-}
+#If I want to implement a way to add onto the movies list in the future
 
-
-with open("Database.json", 'w') as fp:
+with open("Database.json", 'a') as fp:
     json.dump(movieList, fp, indent = 4)
 
 with open("Database.json") as f:
