@@ -2,7 +2,7 @@
     "movies": [
         {
             "title": "The Godfather",
-            "rating": 8.7,
+            "rating": 9.2,
             "year": "1972"
         },
         {
@@ -12,8 +12,43 @@
         },
         {
             "title": "Interstellar",
-            "rating": 8.6,
+            "rating": 8.7,
             "year": "2014"
+        },
+        {
+            "title": "The Dark Knight",
+            "rating": 9.1,
+            "year": "2008"
+        },
+        {
+            "title": "Transformers",
+            "rating": 7.1,
+            "year": "2007"
+        },
+        {
+            "title": "Kung Fu Panda",
+            "rating": 7.8,
+            "year": "2008"
+        },
+        {
+            "title": "Sin City",
+            "rating": 8.0,
+            "year": "2005"
+        },
+        {
+            "title": "CoCo",
+            "rating": 8.4,
+            "year": "2017"
+        },
+        {
+            "title": "Dragonball Evolution",
+            "rating": 2.5,
+            "year": "2009"
+        },
+        {
+            "title": "Green Lantern",
+            "rating": 5.5,
+            "year": "2011"
         }
     ]
 }
