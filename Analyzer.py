@@ -24,31 +24,22 @@ while exit != True:
     choice = input("Do you want to compare movie [ratings] before/after 2008 or [add] a movie to the list or exit?\n")
     if choice == "add":
         addMovieName = input("Enter a movie name: ")
-        addMovieRating = input("Enter the movie's rating: ")
-        addMovieYear= input("Enter the movie's release year: ")
+        addMovieRating = float(input("Enter the movie's rating: "))
+        addMovieYear= int(input("Enter the movie's release year: "))
         addMovie(data, addMovieName, addMovieRating, addMovieYear)
         print("done!")
     elif choice == "ratings":
-        df = data['year'].astype(int)
-        dfR = data['rating']
+        #Uses Boolean Indexing with Pandas
+        after08 = data['year'] > 2008
+        before08 = data['year'] <= 2008
 
-        #Set the values from each year into the variables
-        count1, count2, after08, before08 = 0, 0, 0, 0
-        for i in range(0, len(df)):
-            if df[i] > 2008:
-                after08 += dfR[i]
-                count1 += 1
-            elif df[i] <= 2008:
-                before08 += dfR[i]
-                count2 += 1
+        ratingsAfter = data.loc[after08, 'rating']
+        ratingsBefore = data.loc[before08, 'rating']
+        rating1 = ratingsAfter.mean()
+        rating2 = ratingsBefore.mean()
 
-        #Calculates the rating
-        rating1 = after08 / count1
-        rating2 = before08 / count2
-
-        #Prints results
         print(f"Average rating after 2008: {rating1}")
-        print(f"Average rating before 2008: {rating2}")
+        print(f"Average rating before 2008: {rating2}")  
 
     elif choice == "exit":
         exit = True
